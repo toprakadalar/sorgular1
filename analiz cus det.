@@ -1,0 +1,25 @@
+
+
+Bu SQL sorgusu, müşteri simulasyonları, ürün tanımları ve ilişkili bakiye miktarları ile ilgili verileri alıyor gibi görünmektedir. Ana öğeleri anlamak için aşağıda detayları bulabilirsiniz:
+
+İlgili Tablolar:
+
+TGARPYS.T_CP_PRIORITY_CUST_LIST_SIM (SMP): Bu tablo, müşteri simulasyonları hakkında bilgileri içermekte, müşteri detayları, portföy bilgileri ve simulasyon durumu gibi.
+TGARPYS.T_CP_CUSTOMER_DETAIL (DETAIL): Bu tablo muhtemelen müşteri detayları gibi müşterilere ait detay bilgileri içermektedir, ortalama bakiye ve farklı aylara ait aylık bakiyeler gibi.
+TGARPYS.T_CP_PRODUCT_DEFINITION (DEF): Bu tablo, ürün tanımları, ürün kimlikleri ve isimleri gibi ürün tanımlamalarını içermekte.
+Join İfadeleri:
+
+Sorgu, biri SMP ve DETAIL arasında sol birleşim içeren ve diğeri bu birleşim sonucu ile DPP alt sorgusu arasında sol birleşim içeren iki birleşim içermektedir. Bu birleşimler, müşteri simulasyonları, müşteri detayları ve ürün tanımları arasındaki bilgileri bağlamaktadır.
+Şartlar (WHERE):
+
+ETL_DATE = TO_DATE('31.12.2023','DD.MM.YYYY') gibi belirli tarihler, simulasyon durumunun null olmaması, belirli bir portföy kimliği ve veri tipi kriterleri gibi çeşitli şartlar veriyi filtrelemek için kullanılmaktadır.
+Seçilen Sütunlar (SELECT):
+
+SELECT ifadesi, sonuçta bulunacak sütunları belirtir, müşteri bilgileri (CUSTOMER_NUM, CUSTOMER_NAME_TEXT), simulasyon detayları (SIMULATION_STATUS, PLAN_FLAG), ürün bilgileri (CP_PRODUCT_ID, CP_PRODUCT_NAME_TEXT) ve farklı aylara ait çeşitli bakiye miktarlarını içerir.
+Tanımlar (Aliase):
+
+SMP, DETAIL, TOTAL ve DPP gibi aliase'ler, tabloları referanslamayı basitleştirmek ve sorguyu daha okunabilir kılmak için kullanılmıştır.
+Sıralama (ORDER BY):
+
+Sonuç kümesi TOTAL.PLAN_ORDER_NUM sütunu baz alınarak sıralanmıştır.
+Özetle, sorgu belirli bir tarihe ve diğer kriterlere dayalı olarak müşteri simulasyonları, ürün tanımları ve ilişkili bakiye miktarları hakkında kapsamlı bilgileri almayı amaçlamaktadır. Sorgunun tam anlamı, veritabanınızdaki verilerin detaylarına ve bu simulasyonlar ve ürün tanımlarıyla ilgili genel amaçlara bağlı olacaktır. Eğer veritabanı şemasına veya veriler hakkında ek bilgiye erişiminiz varsa, sorgunun belirli bölümleri veya herhangi bir yönü hakkında daha fazla açıklama yapabilirim.
